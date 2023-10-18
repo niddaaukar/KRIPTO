@@ -81,7 +81,7 @@ if st.button('Enkripsi/Dekripsi', type="primary"):
     st.write(f'Teks Terdekripsi: {decrypted_text}')
     st.write(f'Bit Error Rate (BER): {ber_str}')
     st.write(f'Character Error Rate (CER): {cer_str}')
-    st.write(f'Avalanche Effect: {avalanche_effect_str}')
+    st.write(f'Avalanche Effect: {avalanche_effect_str}%')
     st.write('Lakukan Enkripsi dan Dekripsi')
 
 else:
