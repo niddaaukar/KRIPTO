@@ -62,8 +62,8 @@ def calculate_avalanche_effect(original_text, key):
     return avalanche_effect
 
 # Contoh penggunaan
-original_text = st.input_text('Enter the message: ', original_text)  # Teks asli
-key = st.input_text('Enter the key: ', key)   # Kunci Vigenere
+original_text = st.input_text('Enter the message: ')  # Teks asli
+key = st.input_text('Enter the key: ')   # Kunci Vigenere
 cipher_text = vigenere_encrypt(original_text, key)  # Enkripsi teks asli
 decrypted_text = vigenere_decrypt(cipher_text, key)  # Dekripsi teks terenkripsi
 
