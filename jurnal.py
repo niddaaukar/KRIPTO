@@ -13,7 +13,7 @@ def vigenere_encrypt(plain_text, key):
     encrypted_text = ""
     key_length = len(key)
     for i in range(len(plain_text)):
-        char = plain_text[i]
+        char = chr((ord(plain_text[i]) + 1) % 256)
         key_char = key[i % key_length]
         encrypted_char = chr((ord(char) + ord(key_char)) % 256)
         encrypted_text += encrypted_char
@@ -25,7 +25,7 @@ def vigenere_decrypt(cipher_text, key):
     for i in range(len(cipher_text)):
         char = cipher_text[i]
         key_char = key[i % key_length]
-        decrypted_char = chr((ord(char) - ord(key_char)) % 256)
+        decrypted_char = chr((ord(char) - ord(key_char) - 1) % 256)
         decrypted_text += decrypted_char
     return decrypted_text
 
@@ -70,20 +70,17 @@ cipher_text = vigenere_encrypt(original_text, key)  # Enkripsi teks asli
 decrypted_text = vigenere_decrypt(cipher_text, key)  # Dekripsi teks terenkripsi
 
 
-ber = calculate_ber(original_text, decrypted_text)
-cer = calculate_cer(original_text, decrypted_text)
-avalanche_effect = calculate_avalanche_effect(original_text, key)
+ber_str = str(int(ber * 10000))
+cer_str = str(int(cer * 10000))
+avalanche_effect_str = str(int(round(avalanche_effect)))
 
 if st.button('Enkripsi/Dekripsi', type="primary"):
     st.write(f'Teks Asli: {original_text}')
-    st.write(f'Teks Terenkripsi: {cipher_text}')
-    st.write(f'Teks Terdekripsi: {decrypted_text}')
-    # st.write(f"Bit Error Rate (BER): {ber}")
-    # st.write(f"Character Error Rate (CER): {cer}")
-    # st.write(f'Avalanche Effect: {avalanche_effect}%')
-    st.write(f"Bit Error Rate (BER): {ber:.4f}")
-    st.write(f"Character Error Rate (CER): {cer:.4f}")
-    st.write(f'Avalanche Effect: {avalanche_effect:.2f}%')
+st.write(f'Teks Terenkripsi: {cipher_text}')
+st.write(f'Teks Terdekripsi: {decrypted_text}')
+st.write(f'Bit Error Rate (BER): {ber_str}')
+st.write(f'Character Error Rate (CER): {cer_str}')
+st.write(f'Avalanche Effect: {avalanche_effect_str}')
 
 else:
     st.write('Lakukan Enkripsi dan Dekripsi')
