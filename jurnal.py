@@ -8,7 +8,6 @@ Original file is located at
 """
 
 import streamlit as st
-st.title("KRIPTOGRAFI")
 def vigenere_encrypt(plain_text, key):
     encrypted_text = ""
     key_length = len(key)
@@ -28,6 +27,7 @@ def vigenere_decrypt(cipher_text, key):
         decrypted_char = chr((ord(char) - ord(key_char) - 1) % 256)
         decrypted_text += decrypted_char
     return decrypted_text
+
 
 def calculate_ber(original_text, decrypted_text):
     if len(original_text) != len(decrypted_text):
@@ -51,21 +51,19 @@ def calculate_avalanche_effect(original_text, key):
 
     for i in range(len(original_text)):
         modified_text = list(original_text)
-        modified_text[i] = chr((ord(modified_text[i]) + 1) % 256)
-        modified_text = ''.join(modified_text)
-        modified_encrypted_text = vigenere_encrypt(modified_text, key)
+        for j in range(256):  # Coba semua kemungkinan perubahan
+            modified_text[i] = chr(j)
+            modified_encrypted_text = vigenere_encrypt(''.join(modified_text), key)
 
-        differences = sum(1 for j in range(len(encrypted_text)) if encrypted_text[j] != modified_encrypted_text[j])
-        total_changes += differences
+            differences = sum(1 for k in range(len(encrypted_text)) if encrypted_text[k] != modified_encrypted_text[k])
+            total_changes += differences
 
     avalanche_effect = (total_changes / (len(original_text) * 256)) * 100  # Hitung dalam persentase
     return avalanche_effect
 
-
-
 # Contoh penggunaan
-original_text = st.text_input("Enter the message: ")  # Teks asli
-key = st.text_input("Enter the Key: ")  # Kunci Vigenere
+original_text = "universitasdiannuswantoro_2022_jalanimambondjolno20semarangdekattugumuda"  # Teks asli
+key = "semangatperjuangandengandiannuswantoro2023"  # Kunci Vigenere
 cipher_text = vigenere_encrypt(original_text, key)  # Enkripsi teks asli
 decrypted_text = vigenere_decrypt(cipher_text, key)  # Dekripsi teks terenkripsi
 
@@ -80,5 +78,3 @@ st.write(f'Teks Terdekripsi: {decrypted_text}')
 st.write(f'Bit Error Rate (BER): {ber_str}')
 st.write(f'Character Error Rate (CER): {cer_str}')
 st.write(f'Avalanche Effect: {avalanche_effect_str}')
-       
-
