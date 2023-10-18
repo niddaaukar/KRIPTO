@@ -68,7 +68,9 @@ cipher_text = vigenere_encrypt(original_text, key)  # Enkripsi teks asli
 decrypted_text = vigenere_decrypt(cipher_text, key)  # Dekripsi teks terenkripsi
 
 
-
+ber = calculate_ber(original_text, decrypted_text)
+cer = calculate_cer(original_text, decrypted_text)
+avalanche_effect = calculate_avalanche_effect(original_text, key)
 ber_str = str(int(ber * 10000))
 cer_str = str(int(cer * 10000))
 avalanche_effect_str = str(int(round(avalanche_effect)))
