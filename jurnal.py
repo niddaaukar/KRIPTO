@@ -68,13 +68,19 @@ cipher_text = vigenere_encrypt(original_text, key)  # Enkripsi teks asli
 decrypted_text = vigenere_decrypt(cipher_text, key)  # Dekripsi teks terenkripsi
 
 
+ber = calculate_ber(original_text, decrypted_text)
+cer = calculate_cer(original_text, decrypted_text)
+avalanche_effect = calculate_avalanche_effect(original_text, key)
 ber_str = str(int(ber * 10000))
 cer_str = str(int(cer * 10000))
 avalanche_effect_str = str(int(round(avalanche_effect)))
 
+if st.button('Enkripsi/Dekripsi', type="primary"):
 st.write(f'Teks Asli: {original_text}')
 st.write(f'Teks Terenkripsi: {cipher_text}')
 st.write(f'Teks Terdekripsi: {decrypted_text}')
 st.write(f'Bit Error Rate (BER): {ber_str}')
 st.write(f'Character Error Rate (CER): {cer_str}')
 st.write(f'Avalanche Effect: {avalanche_effect_str}')
+
+st.write('Lakukan Enkripsi dan Dekripsi')
