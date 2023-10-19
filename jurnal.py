@@ -8,6 +8,8 @@ Original file is located at
 """
 
 import streamlit as st
+import collections
+import math
 def vigenere_encrypt(plain_text, key):
     encrypted_text = ""
     key_length = len(key)
