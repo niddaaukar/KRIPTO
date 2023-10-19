@@ -17,8 +17,8 @@ def vigenere_encrypt(plain_text, key):
     for i in range(len(plain_text)):
         char = chr((ord(plain_text[i]) + 1) % 256)
         key_char = key[i % key_length]
-        # encrypted_char = chr((ord(char) + ord(key_char)) % 256)
-        encrypted_char = chr((ord(char) + ord(key_char) + random.randint(0, 255)) % 256)
+        encrypted_char = chr((ord(char) + ord(key_char)) % 256)
+        # encrypted_char = chr((ord(char) + ord(key_char) + random.randint(0, 255)) % 256)
         encrypted_text += encrypted_char
     return encrypted_text
 
