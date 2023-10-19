@@ -63,7 +63,8 @@ def calculate_avalanche_effect(original_text, key):
     total_changes = 0
 
     for i in range(len(original_text)):
-        modified_text = list(original_text)
+        original_char = original_text[i]
+        encrypted_char = encrypted_text[i]
         for j in range(256):  # Coba semua kemungkinan perubahan
             modified_text[i] = chr(j)
             modified_encrypted_text = vigenere_encrypt(''.join(modified_text), key)
